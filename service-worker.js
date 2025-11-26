@@ -33,7 +33,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
   // Strategy for external APIs (Weather, Gemini): Network only, fail gracefully (handled by app logic)
-  if (url.hostname.includes('open-meteo.com') || url.hostname.includes('generativelanguage.googleapis.com')) {
+  if (url.hostname.includes('open-meteo.com') || url.hostname.includes('googleapis.com')) {
     return; 
   }
 
@@ -43,7 +43,7 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
         // Don't cache bad responses
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic' && networkResponse.type !== 'cors') {
+        if (!networkResponse || networkResponse.status !== 200 || (networkResponse.type !== 'basic' && networkResponse.type !== 'cors')) {
           return networkResponse;
         }
         
@@ -55,6 +55,10 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       }).catch(() => {
         // Network failed, nothing to do if we don't have cache
+        // If it's a navigation request (like refreshing the page offline), try to return index.html
+        if (event.request.mode === 'navigate') {
+            return caches.match('./index.html');
+        }
       });
 
       return cachedResponse || fetchPromise;
