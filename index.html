@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Siam Journey Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siam Journey</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#7c2d12">
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-thai-silk font-sans">
   <div id="root" class="p-6"></div>
 
-  <!-- React + ReactDOM CDN -->
+  <!-- React + ReactDOM -->
   <script type="module">
     import React from "https://aistudiocdn.com/react@^19.2.0";
     import ReactDOM from "https://aistudiocdn.com/react-dom@^19.2.0";
 
-    // 最簡單 App 元件
+    // 簡單 App 元件
     const App = () => {
       return (
         <div class="text-center">
@@ -31,11 +30,11 @@
       );
     };
 
-    // Render 到 root
+    // Render React 元件
     const root = ReactDOM.createRoot(document.getElementById("root"));
     root.render(<App />);
 
-    // Service Worker 註冊
+    // 註冊 Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./service-worker.js')
