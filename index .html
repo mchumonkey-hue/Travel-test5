@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siam Journey</title>
+  <meta name="theme-color" content="#7c2d12" />
+  <meta name="description" content="A Thai-style travel itinerary PWA" />
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Siam Journey">
+
+  <style>
+    body { font-family: 'Noto Sans Thai', sans-serif; background-color: #FDF6E3; margin:0; }
+    h1 { font-family: 'Playfair Display', serif; }
+    .container { padding: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-3xl text-thai-red mb-4">Siam Journey</h1>
+    <p>歡迎使用你的泰國旅遊私人 PWA！</p>
+    <ul>
+      <li>🏨 住宿資訊</li>
+      <li>🍲 餐廳推薦</li>
+      <li>🗺️ 行程規劃</li>
+    </ul>
+  </div>
+
+  <!-- Service Worker 註冊 -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('SW registered', reg))
+        .catch(err => console.log('SW failed', err));
+    }
+  </script>
+</body>
+</html>
