@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Copy of Copy of Siam Journey",
+  "description": "A Thai-style travel itinerary and expense tracker PWA for Bangkok, designed for mobile use.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

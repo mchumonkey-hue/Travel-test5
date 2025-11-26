@@ -1,0 +1,21 @@
+{
+  "name": "Siam Journey",
+  "short_name": "SiamJourney",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FDF6E3",
+  "theme_color": "#7c2d12",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%237c2d12'/%3E%3Cpath d='M369.3 226.7c0 0-27-9-45 0-18 9-27 36-27 36l-18-9c0 0-9-27-27-36-18-9-36 0-45 9-9 9-9 27-9 27l-18-9c0 0 0-36-18-45-18-9-36 0-45 9-9 9-9 27-9 27l-27-9c0 0 0-36-18-45-18-9-36 0-45 9V352h36v72h36v-72h36v72h36v-72h90v72h36v-72h45c18 0 36-18 36-36v-54z' fill='%23D4AF37'/%3E%3Cpath d='M288 144c0 39.76-32.24 72-72 72s-72-32.24-72-72 32.24-72 72-72 72 32.24 72 72z' fill='%23D4AF37'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%237c2d12'/%3E%3Cpath d='M369.3 226.7c0 0-27-9-45 0-18 9-27 36-27 36l-18-9c0 0-9-27-27-36-18-9-36 0-45 9-9 9-9 27-9 27l-18-9c0 0 0-36-18-45-18-9-36 0-45 9-9 9-9 27-9 27l-27-9c0 0 0-36-18-45-18-9-36 0-45 9V352h36v72h36v-72h36v72h36v-72h90v72h36v-72h45c18 0 36-18 36-36v-54z' fill='%23D4AF37'/%3E%3Cpath d='M288 144c0 39.76-32.24 72-72 72s-72-32.24-72-72 32.24-72 72-72 72 32.24 72 72z' fill='%23D4AF37'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
