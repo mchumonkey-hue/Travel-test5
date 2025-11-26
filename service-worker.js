@@ -1,67 +1,25 @@
-const CACHE_NAME = 'siam-journey-v2';
+const CACHE_NAME = "siam-journey-demo-v1";
 const urlsToCache = [
-  './',
-  './index.html',
-  './manifest.json'
+  ".",
+  "./index.html",
+  "./style.css"
 ];
 
-self.addEventListener('install', (event) => {
-  self.skipWaiting();
+// 安裝 Service Worker
+self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
 });
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
+// 啟用 Service Worker
+self.addEventListener("activate", event => {
+  event.waitUntil(self.clients.claim());
 });
 
-self.addEventListener('fetch', (event) => {
-  const url = new URL(event.request.url);
-
-  // Strategy for external APIs (Weather, Gemini): Network only, fail gracefully (handled by app logic)
-  if (url.hostname.includes('open-meteo.com') || url.hostname.includes('googleapis.com')) {
-    return; 
-  }
-
-  // Strategy for everything else (Scripts, Styles, Fonts, Images): Stale-While-Revalidate
-  // Try to serve from cache first, then update cache from network
+// 攔截請求
+self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      const fetchPromise = fetch(event.request).then((networkResponse) => {
-        // Don't cache bad responses
-        if (!networkResponse || networkResponse.status !== 200 || (networkResponse.type !== 'basic' && networkResponse.type !== 'cors')) {
-          return networkResponse;
-        }
-        
-        // Clone and cache
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
-        return networkResponse;
-      }).catch(() => {
-        // Network failed, nothing to do if we don't have cache
-        // If it's a navigation request (like refreshing the page offline), try to return index.html
-        if (event.request.mode === 'navigate') {
-            return caches.match('./index.html');
-        }
-      });
-
-      return cachedResponse || fetchPromise;
-    })
+    caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
